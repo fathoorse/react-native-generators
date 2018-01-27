@@ -17,4 +17,16 @@ const createReduxSkeleton = async () => {
     await updateAppJS()
 }
 
-createReduxSkeleton()
+const args = process.argv.slice(2)
+const command = args[0]
+
+switch (command) {
+    case 'skeleton':
+        createReduxSkeleton()
+        break
+    case 'component':
+        createReduxSkeleton()
+        break
+    default:
+        console.log("We can't do it yet")
+}
