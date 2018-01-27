@@ -3,7 +3,8 @@ const {
     createMainReducerJS,
     createActionsJS,
     createMainStoreJS,
-    updateAppJS
+    updateAppJSm,
+    createComponent
 } = require('./creators')
 
 const { cd } = require('./commands')
@@ -25,7 +26,11 @@ switch (command) {
         createReduxSkeleton()
         break
     case 'component':
-        createReduxSkeleton()
+        if (args[1] === undefined) {
+            console.log("Need a name for component")
+            return
+        }
+        createComponent('', args[1])
         break
     default:
         console.log("We can't do it yet")

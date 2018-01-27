@@ -17,7 +17,8 @@ exports.createHierarchy = async () => {
         await echo(`${folder}/package.json`,
             `{\n` +
             `   "name": "@${folder}"\n` +
-            `}`)
+            `}`
+        )
     }
 }
 
@@ -29,7 +30,8 @@ exports.createActionsJS = async () => {
         `export default Actions = {}\n\n` +
         `Object.assign(\n` +
         `   // Add your actions here\n` +
-        `)`)
+        `)`
+    )
 }
 
 exports.createMainReducerJS = async () => {
@@ -40,14 +42,59 @@ exports.createMainReducerJS = async () => {
         `*/\n\n` +
         `export default combineReducers({\n` +
         `   // Add your sub-reducers here\n` +
-        `})`)
+        `})`
+    )
 }
 
 exports.createMainStoreJS = async () => {
     await echo(`${storePath}/MainStore.js`,
         `import { createStore, applyMiddleware } from "redux"\n` +
         `import mainReducer from "@reducers/MainReducer"\n\n` +
-        `export default store = createStore(mainReducer)`)
+        `export default store = createStore(mainReducer)`
+    )
+}
+
+exports.createComponent = async (path, name) => {
+    const dirName = name.charAt(0).toLowerCase() + name.slice(1)
+    await mkdir(dirName)
+    cd(dirName)
+    createContainer(name)
+    createPresenter(name)
+}
+
+const createPresenter = async (name) => {
+    await echo(`${name}.js`,
+        `import React, { Component } from "react"\n` +
+        `import { StyleSheet, View } from "react-native"\n\n` +
+        `export default DayPlanScreen = (props) => <View>\n\n` +
+        `</View>\n\n` +
+        `const styles = StyleSheet.create({\n\n` + 
+        `})`
+    )
+}
+
+const createContainer = async (name) => {
+    const containerName = `${name}Container`
+    await echo(`${containerName}.js`,
+        `import React, { Component } from "react"\n` +
+        `import { connect } from "react-redux"\n\n` +
+        `class ${containerName} extends Component {\n\n` +
+        `   render() {\n` +
+        `       return (\n` +
+        `           <${name} \n\n` +
+        `           />\n` +
+        `       )\n` +
+        `   }\n` +
+        `}\n\n` +
+        `export default connect(\n` +
+        `   store => {\n` +
+        `       return {\n\n` +
+        `       }\n` +
+        `   },\n` +
+        `   {\n\n` +
+        `   }\n` +
+        `)(${containerName})\n`
+    )
 }
 
 exports.updateAppJS = async () => {
@@ -63,5 +110,6 @@ exports.updateAppJS = async () => {
         `            </Provider>\n` +
         `        );\n` +
         `    }\n` +
-        `}`)
+        `}`
+    )
 }
