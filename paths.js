@@ -11,8 +11,8 @@ exports.folderSkeleton = [
     screensPath
 ]
 
-exports.sourcePath = 'source'
-exports.actionsPath = 'actions'
-exports.reducersPath = 'reducers'
-exports.storePath = 'store'
-exports.screensPath = 'screens'
+exports.sourcePath = sourcePath
+exports.actionsPath = actionsPath
+exports.reducersPath = reducersPath
+exports.storePath = storePath
+exports.screensPath = screensPath
