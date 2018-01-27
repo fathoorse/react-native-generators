@@ -4,7 +4,7 @@
   "description": "Script to create your react-native application with redux skeleton",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js testapp",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
