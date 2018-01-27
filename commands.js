@@ -9,7 +9,7 @@ exports.pwd = () => {
     return exec(`pwd`)
 }
 
-exports.createFile = (fileName, content) => {
+exports.echo = (fileName, content) => {
     return exec(`echo "${content}" >${fileName}`)
 }
 

@@ -7,30 +7,46 @@ const {
     folderSkeleton
 } = require('./paths')
 
-const { mkdir, createFile, cd, pwd } = require('./commands')
+const { mkdir, echo, cd, pwd } = require('./commands')
 
 exports.createHierarchy = async () => {
     await mkdir(sourcePath)
     await cd(sourcePath)
     for (const folder of folderSkeleton) {
         await mkdir(folder)
-        await createFile(`${folder}/package.json`, `{\n\t"name": "@${folder}"\n}`)
+        await echo(`${folder}/package.json`, `{\n\t"name": "@${folder}"\n}`)
     }
 }
 
 exports.createActionsJS = async () => {
-    await createFile(`${actionsPath}/Actions.js`, `/*\n\tImport your actions here\n*/\n\n` + 
-    `export default Actions = {}\n\nObject.assign(\n\t// Add your actions here\n)`)
+    await echo(`${actionsPath}/Actions.js`, `/*\n\tImport your actions here\n*/\n\n` +
+        `export default Actions = {}\n\nObject.assign(\n\t// Add your actions here\n)`)
 }
 
 exports.createMainReducerJS = async () => {
-    await createFile(`${reducersPath}/MainReducer.js`, `import { combineReducers } from 'redux'\n` +
-    `/*\n\tImport your reducers here\n*/\n\n` + 
-    `export default combineReducers({\n\t// Add your sub-reducers here\n})`)
+    await echo(`${reducersPath}/MainReducer.js`, `import { combineReducers } from 'redux'\n` +
+        `/*\n\tImport your reducers here\n*/\n\n` +
+        `export default combineReducers({\n\t// Add your sub-reducers here\n})`)
 }
 
 exports.createMainStoreJS = async () => {
-    await createFile(`${storePath}/MainStore.js`, `import { createStore, applyMiddleware } from 'redux'\n` +
-    `import mainReducer from '@reducers/MainReducer'\n\n` + 
-    `export default store = createStore(mainReducer)`)
+    await echo(`${storePath}/MainStore.js`, `import { createStore, applyMiddleware } from 'redux'\n` +
+        `import mainReducer from '@reducers/MainReducer'\n\n` +
+        `export default store = createStore(mainReducer)`)
+}
+
+exports.updateAppJS = async () => {
+    await echo(`App.js`,
+        `import React, { Component } from 'react'\n` +
+        `import { Provider } from 'react-redux'\n\n` +
+        `import store from '@store/MainStore'\n\n` +
+        `export default class App extends Component {\n` +
+        `    render() {\n` +
+        `        return (\n` +
+        `            <Provider store={store}>\n` +
+        `                {/* Your root here */}\n` +
+        `            </Provider>\n` +
+        `        );\n` +
+        `    }\n` +
+        `}`)
 }
