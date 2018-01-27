@@ -10,7 +10,7 @@ exports.pwd = () => {
 }
 
 exports.echo = (fileName, content) => {
-    return exec(`echo "${content}" >${fileName}`)
+    return exec(`echo '${content}' >${fileName}`)
 }
 
 exports.cd = (dir) => {
