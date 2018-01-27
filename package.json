@@ -1,0 +1,17 @@
+{
+  "name": "react-native-redux-new",
+  "version": "1.0.0",
+  "description": "Script to create your react-native application with redux skeleton",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js testapp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "redux"
+  ],
+  "author": "Vladyslav Zavalykhatko",
+  "license": "ISC",
+  "dependencies": {}
+}
