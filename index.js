@@ -1,22 +1,5 @@
-const {
-    createHierarchy,
-    createMainReducerJS,
-    createActionsJS,
-    createMainStoreJS,
-    updateAppJSm,
-    createComponent
-} = require('./creators')
-
-const { cd } = require('./commands')
-
-const createReduxSkeleton = async () => {
-    await createHierarchy()
-    await createMainReducerJS()
-    await createActionsJS()
-    await createMainStoreJS()
-    cd('..')
-    await updateAppJS()
-}
+const { createComponent } = require('./source/creators')
+const { createReduxSkeleton } = require('./source/createReduxSkeleton')
 
 const args = process.argv.slice(2)
 const command = args[0]

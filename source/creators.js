@@ -3,7 +3,6 @@ const {
     actionsPath,
     reducersPath,
     storePath,
-    screensPath,
     folderSkeleton
 } = require('./paths')
 
