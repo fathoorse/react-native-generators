@@ -7,10 +7,19 @@ const {
 } = require('./paths')
 
 const { mkdir, echo, cd, pwd } = require('./commands')
+const { CustomError } = require('./customError')
 
-exports.createHierarchy = async () => {
-    await mkdir(sourcePath)
-    await cd(sourcePath)
+const errorCodes = {
+    cantCreateRootFolder: 3
+}
+
+exports.errorCodes = errorCodes
+
+exports.createHierarchy = async (path = sourcePath) => {
+    await mkdir(path).catch(err => {
+        throw new CustomError(err.message, errorCodes.cantCreateRootFolder, { path })
+    })
+    await cd(path)
     for (const folder of folderSkeleton) {
         await mkdir(folder)
         await echo(`${folder}/package.json`,
@@ -67,7 +76,7 @@ const createPresenter = async (name) => {
         `import { StyleSheet, View } from "react-native"\n\n` +
         `export default DayPlanScreen = (props) => <View>\n\n` +
         `</View>\n\n` +
-        `const styles = StyleSheet.create({\n\n` + 
+        `const styles = StyleSheet.create({\n\n` +
         `})`
     )
 }

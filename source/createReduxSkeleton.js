@@ -3,13 +3,16 @@ const {
     createMainReducerJS,
     createActionsJS,
     createMainStoreJS,
-    updateAppJS
+    updateAppJS,
+    errorCodes
 } = require('./creators')
 
 const { cd } = require('./commands')
 
-exports.createReduxSkeleton = async () => {
-    await createHierarchy()
+exports.errorCodes = errorCodes
+
+exports.createReduxSkeleton = async (path) => {
+    await createHierarchy(path)
     await createMainReducerJS()
     await createActionsJS()
     await createMainStoreJS()

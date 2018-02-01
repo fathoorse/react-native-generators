@@ -1,10 +1,10 @@
 {
   "name": "react-native-generator",
   "version": "1.0.0",
-  "description": "Script to add redux skeleton to your application and more",
+  "description": "Script for adding redux skeleton to your application and more",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js skeleton",
+    "start": "node index.js skeleton path",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
