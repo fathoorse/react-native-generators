@@ -1,6 +1,6 @@
 {
   "name": "rngen",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Script for adding redux skeleton to your application and more",
   "main": "index.js",
   "engines": {
