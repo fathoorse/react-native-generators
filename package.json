@@ -19,7 +19,8 @@
   },
   "keywords": [
     "react-native",
-    "redux"
+    "redux",
+    "generator"
   ],
   "author": "Fat Horse",
   "license": "ISC",
