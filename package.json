@@ -1,8 +1,18 @@
 {
-  "name": "react-native-generator",
+  "name": "rngen",
   "version": "1.0.0",
   "description": "Script for adding redux skeleton to your application and more",
   "main": "index.js",
+  "engines": {
+    "node": ">8.0.0"
+  },
+  "bin": {
+    "rngen": "bin/rngen.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fathoorse/react-native-generators"
+  },
   "scripts": {
     "start": "node index.js skeleton path",
     "test": "echo \"Error: no test specified\" && exit 1"
