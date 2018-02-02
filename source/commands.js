@@ -2,11 +2,7 @@ const util = require('util')
 const exec = util.promisify(require('child_process').exec)
 
 exports.mkdir = (dir) => {
-    return exec(`mkdir ${dir}`)/* .catch(_ => { 
-        let error = new Error("Some error")
-        error.code = 1
-        throw error
-    }) */
+    return exec(`mkdir ${dir}`)
 }
 
 exports.pwd = () => {

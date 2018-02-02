@@ -1,7 +1,7 @@
 const { createComponent } = require('./source/creators')
 const { createReduxSkeleton, errorCodes } = require('./source/createReduxSkeleton')
 
-exports.rngen = () => {
+const rngen = () => {
     const args = process.argv.slice(2)
     const command = args[0]
 
@@ -21,9 +21,20 @@ exports.rngen = () => {
             }
             createComponent('', args[1])
             break
+        case 'help':
+            console.log(`Usage: rngen <command>\n`+
+                        `\n`+
+                        `where <command> is one off:\n`+
+                        `   skeleton <root folder name>("source" by default)\n`+
+                        `   component <name>\n`
+        )
+            break
         case undefined:
-            console.log("Usage: react-native-generator command")
+            console.log("Usage: rngen help")
+            break
         default:
             console.log("We can't do it yet")
     }
 }
+
+rngen()
