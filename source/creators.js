@@ -3,6 +3,7 @@ const {
     actionsPath,
     reducersPath,
     storePath,
+    screensPath,
     folderSkeleton
 } = require('./paths')
 
@@ -22,6 +23,10 @@ exports.createHierarchy = async (path = sourcePath) => {
     await cd(path)
     for (const folder of folderSkeleton) {
         await mkdir(folder)
+
+        // Do not create package.json for screens
+        if (folder === screensPath) { continue }
+
         await echo(`${folder}/package.json`,
             `{\n` +
             `   "name": "@${folder}"\n` +
@@ -81,11 +86,14 @@ const createPresenter = async (name) => {
     )
 }
 
+exports.createPresenter = createPresenter
+
 const createContainer = async (name) => {
     const containerName = `${name}Container`
     await echo(`${containerName}.js`,
         `import React, { Component } from "react"\n` +
         `import { connect } from "react-redux"\n\n` +
+        `import ${name} from "./${name}"\n\n` +
         `class ${containerName} extends Component {\n\n` +
         `   render() {\n` +
         `       return (\n` +
