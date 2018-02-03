@@ -1,4 +1,4 @@
-const { cli } = require("./source/cli")
+const { cli } = require("./source/cli/cli")
 
 const rngen = () => {
     const args = process.argv.slice(2)

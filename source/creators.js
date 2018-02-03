@@ -79,7 +79,7 @@ const createPresenter = async (name) => {
     await echo(`${name}.js`,
         `import React, { Component } from "react"\n` +
         `import { StyleSheet, View } from "react-native"\n\n` +
-        `export default DayPlanScreen = (props) => <View>\n\n` +
+        `export default ${name} = (props) => <View>\n\n` +
         `</View>\n\n` +
         `const styles = StyleSheet.create({\n\n` +
         `})`

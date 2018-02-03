@@ -1,5 +1,6 @@
-const { createComponent, createPresenter } = require('./creators')
-const { createReduxSkeleton, errorCodes } = require('./createReduxSkeleton')
+const { createComponent, createPresenter } = require('../creators')
+const { createReduxSkeleton, errorCodes } = require('../createReduxSkeleton')
+const { logHelp } = require('./help')
 
 const logLuckOfNameFor = (entity) => console.log(`Need a name for ${entity}`)
 
@@ -26,16 +27,10 @@ exports.cli = (command, args) => {
                 logLuckOfNameFor(command)
                 return
             }
-            createPresenter('', nameArg)
+            createPresenter(nameArg)
             break
         case 'help':
-            console.log(
-                `Usage: rngen <command>\n` +
-                `\n` +
-                `where <command> is one off:\n` +
-                `   skeleton <root folder name>("source" by default)\n` +
-                `   component <name>\n`
-            )
+            logHelp()
             break
         case undefined:
             console.log("Usage: rngen help")
