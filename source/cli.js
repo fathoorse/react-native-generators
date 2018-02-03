@@ -1,9 +1,10 @@
 const { createComponent, createPresenter } = require('./creators')
 const { createReduxSkeleton, errorCodes } = require('./createReduxSkeleton')
 
-const luckOfNameFor = (entity) => `Need a name for ${entity}`
+const logLuckOfNameFor = (entity) => console.log(`Need a name for ${entity}`)
 
 exports.cli = (command, args) => {
+    const nameArg = args[1]
     switch (command) {
         case 'skeleton':
             createReduxSkeleton(args[1]).catch(err => {
@@ -14,18 +15,18 @@ exports.cli = (command, args) => {
             })
             break
         case 'component':
-            if (args[1] === undefined) {
-                console.log(luckOfNameFor("component"))
+            if (nameArg === undefined) {
+                logLuckOfNameFor(command)
                 return
             }
-            createComponent('', args[1])
+            createComponent('', nameArg)
             break
         case 'presenter':
-            if (args[1] === undefined) {
-                console.log(luckOfNameFor("presenter"))
+            if (nameArg === undefined) {
+                logLuckOfNameFor(command)
                 return
             }
-            createPresenter('', args[1])
+            createPresenter('', nameArg)
             break
         case 'help':
             console.log(
