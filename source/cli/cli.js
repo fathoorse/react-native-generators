@@ -5,8 +5,19 @@ const { logHelp } = require('./help')
 
 const logLuckOfNameFor = (entity) => console.log(`Need a name for ${entity}`)
 
+const tryCreatorForName = (name, command) => {
+    return creator => {
+        if (name === undefined) {
+            logLuckOfNameFor(command)
+            return
+        }
+        creator(name)
+    }
+}
+
 exports.cli = (command, args) => {
     const nameArg = args[1]
+    const creator = tryCreatorForName(nameArg, command)
     switch (command) {
         case 'skeleton':
             createReduxSkeleton(args[1]).catch(err => {
@@ -17,24 +28,16 @@ exports.cli = (command, args) => {
             })
             break
         case 'component':
-            if (nameArg === undefined) {
-                logLuckOfNameFor(command)
-                return
-            }
-            createComponent('', nameArg)
+            creator(createComponent)
             break
         case 'presenter':
-            if (nameArg === undefined) {
-                logLuckOfNameFor(command)
-                return
-            }
-            createPresenter(nameArg)
+            creator(createPresenter)
+            break
+        case 'redux':
+            creator(addReduxComponent)
             break
         case 'help':
             logHelp()
-            break
-        case 'redux':
-            addReduxComponent(args[1])
             break
         case undefined:
             console.log("Usage: rngen help")

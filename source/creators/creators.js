@@ -70,7 +70,7 @@ exports.createMainStoreJS = async () => {
     )
 }
 
-exports.createComponent = async (path, name) => {
+exports.createComponent = async (name) => {
     const dirName = lowercasedFirstLetter(name)
     await mkdir(dirName)
     await cd(dirName)
