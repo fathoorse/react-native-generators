@@ -4,11 +4,14 @@ const {
     reducersPath,
     storePath,
     screensPath,
-    folderSkeleton
+    folderSkeleton,
+    mainReducerFile
 } = require('./paths')
 
 const { mkdir, echo, cd, pwd } = require('./commands')
-const { CustomError } = require('./customError')
+const { CustomError } = require('./../customError')
+
+const { lowercasedFirstLetter } = require('./../helperFunctions')
 
 const errorCodes = {
     cantCreateRootFolder: 3
@@ -48,7 +51,7 @@ exports.createActionsJS = async () => {
 }
 
 exports.createMainReducerJS = async () => {
-    await echo(`${reducersPath}/MainReducer.js`,
+    await echo(`${reducersPath}/${mainReducerFile}`,
         `import { combineReducers } from "redux"\n` +
         `/*\n` +
         `   Import your reducers here\n` +
@@ -68,11 +71,11 @@ exports.createMainStoreJS = async () => {
 }
 
 exports.createComponent = async (path, name) => {
-    const dirName = name.charAt(0).toLowerCase() + name.slice(1)
+    const dirName = lowercasedFirstLetter(name)
     await mkdir(dirName)
-    cd(dirName)
-    createContainer(name)
-    createPresenter(name)
+    await cd(dirName)
+    await createContainer(name)
+    await createPresenter(name)
 }
 
 const createPresenter = async (name) => {

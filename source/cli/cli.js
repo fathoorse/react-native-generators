@@ -1,4 +1,5 @@
-const { createComponent, createPresenter } = require('../creators')
+const { createComponent, createPresenter } = require('../creators/creators')
+const { addReduxComponent } = require('../creators/reduxCreator')
 const { createReduxSkeleton, errorCodes } = require('../createReduxSkeleton')
 const { logHelp } = require('./help')
 
@@ -31,6 +32,9 @@ exports.cli = (command, args) => {
             break
         case 'help':
             logHelp()
+            break
+        case 'redux':
+            addReduxComponent(args[1])
             break
         case undefined:
             console.log("Usage: rngen help")

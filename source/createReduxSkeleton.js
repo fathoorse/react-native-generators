@@ -5,9 +5,9 @@ const {
     createMainStoreJS,
     updateAppJS,
     errorCodes
-} = require('./creators')
+} = require('./creators/creators')
 
-const { cd } = require('./commands')
+const { cd } = require('./creators/commands')
 
 exports.errorCodes = errorCodes
 

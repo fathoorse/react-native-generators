@@ -1,6 +1,8 @@
 const util = require('util')
 const exec = util.promisify(require('child_process').exec)
 
+exports.readFile = util.promisify(require('fs').readFile)
+
 exports.mkdir = (dir) => {
     return exec(`mkdir ${dir}`)
 }
@@ -14,5 +16,5 @@ exports.echo = (fileName, content) => {
 }
 
 exports.cd = (dir) => {
-    process.chdir(dir);
+    process.chdir(dir)
 }
