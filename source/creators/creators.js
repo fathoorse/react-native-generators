@@ -5,7 +5,8 @@ const {
     storePath,
     screensPath,
     folderSkeleton,
-    mainReducerFile
+    mainReducerFile,
+    mainActionsFile
 } = require('./paths')
 
 const { mkdir, echo, cd, pwd } = require('./commands')
@@ -39,12 +40,13 @@ exports.createHierarchy = async (path = sourcePath) => {
 }
 
 exports.createActionsJS = async () => {
-    await echo(`${actionsPath}/Actions.js`,
+    await echo(`${actionsPath}/${mainActionsFile}`,
         `/*\n` +
         `   Import your actions here\n` +
         `*/\n\n` +
-        `export default Actions = {}\n\n` +
+        `export default actions = {}\n\n` +
         `Object.assign(\n` +
+        `   actions\n` +
         `   // Add your actions here\n` +
         `)`
     )
@@ -71,7 +73,8 @@ exports.createMainStoreJS = async () => {
 }
 
 exports.createComponent = async (name) => {
-    const dirName = lowercasedFirstLetter(name)
+    const pathToComponent = `${sourcePath}/${screensPath}`
+    const dirName = `${pathToComponent}/${lowercasedFirstLetter(name)}`
     await mkdir(dirName)
     await cd(dirName)
     await createContainer(name)

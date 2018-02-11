@@ -12,10 +12,14 @@ const { cd } = require('./creators/commands')
 exports.errorCodes = errorCodes
 
 exports.createReduxSkeleton = async (path) => {
-    await createHierarchy(path)
-    await createMainReducerJS()
-    await createActionsJS()
-    await createMainStoreJS()
-    cd('..')
-    await updateAppJS()
+    try {
+        await createHierarchy(path)
+        await createMainReducerJS()
+        await createActionsJS()
+        await createMainStoreJS()
+        cd('..')
+        await updateAppJS()
+    } catch (err) {
+        console.log(err)
+    }
 }

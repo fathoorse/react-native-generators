@@ -4,5 +4,6 @@ exports.logHelp = () => console.log(
     `where <command> is one off:\n` +
     `   skeleton <root folder name>("source" by default)\n` +
     `   component <name>\n` +
-    `   presenter <name>\n`
+    `   presenter <name>\n` +
+    `   redux <name>\n`
 )

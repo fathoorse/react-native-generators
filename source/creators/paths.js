@@ -12,6 +12,7 @@ exports.folderSkeleton = [
 ]
 
 exports.mainReducerFile = 'MainReducer.js'
+exports.mainActionsFile = 'Actions.js'
 exports.sourcePath = sourcePath
 exports.actionsPath = actionsPath
 exports.reducersPath = reducersPath
